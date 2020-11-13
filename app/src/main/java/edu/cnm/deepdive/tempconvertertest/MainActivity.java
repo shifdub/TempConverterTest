@@ -27,10 +27,13 @@ public class MainActivity extends AppCompatActivity  {
       //kelvin = celsius + 273.15;
       //fahrenheit = kelvin * 1.8 - 459.67;
 
-      double fahrenheit = ((celsius * 9) / 5) + 32;
-      double celsius = ((fahrenheit - 32) * 5 / 9);
+     /* double fahrenheit = ((celsius * 9) / 5) + 32;
+     e doubl celsius = ((fahrenheit - 32) * 5 / 9);
       double kelvin =
-      double kelvin =
+      double kelvin =*/
+    oneTemperatureScaleToTheOtherTwoTempScales();
+
+
     });
 
 
@@ -70,9 +73,30 @@ public class MainActivity extends AppCompatActivity  {
     } else {
       celsius = Double.parseDouble(input3);
     }
-     String sum = input3 + 273.15;
-    binding.input1.setText(getString(R.string.kelvin,sum));
 
+    //binding.input1.setText(getString(R.string.kelvin,sum));
+    if(kelvin == 0 && fahrenheit == 0) {
+      kelvin = celsius + 273.15;
+      fahrenheit =  celsius * 9 / 5 + 32;
+
+      binding.input1.setText(getString(R.string.kelvin, kelvin));
+      binding.input2.setText(getString(R.string.fahrenheit,fahrenheit));
+
+
+    } else if (fahrenheit == 0 && celsius == 0) {
+      fahrenheit = kelvin * 1.8 - 459.67;
+      celsius = kelvin - 273.15;
+
+      binding.input2.setText(getString(R.string.fahrenheit, fahrenheit));
+      binding.input3.setText(getString(R.string.celsius, celsius));
+
+    } else if (celsius == 0 && kelvin == 0) {
+      celsius = fahrenheit / 9 * 5 - 32;
+      kelvin = fahrenheit / 1.8 + 459.67;
+
+      binding.input1.setText(getString(R.string.kelvin, kelvin));
+      binding.input3.setText(getString(R.string.celsius, celsius));
+    }
 
   }
 
