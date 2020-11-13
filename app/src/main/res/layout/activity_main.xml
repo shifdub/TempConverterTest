@@ -76,7 +76,6 @@
       android:layout_width="100dp"
       android:layout_height="wrap_content"
       android:hint="@string/celsius"
-      android:inputType="none"
       tools:text="273.15"/>
 
   </com.google.android.material.textfield.TextInputLayout>

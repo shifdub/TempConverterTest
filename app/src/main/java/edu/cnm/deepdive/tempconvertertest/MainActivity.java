@@ -1,14 +1,13 @@
 package edu.cnm.deepdive.tempconvertertest;
 
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import edu.cnm.deepdive.tempconvertertest.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements TextWatcher {
 
   private ActivityMainBinding binding;
 
@@ -27,11 +26,7 @@ public class MainActivity extends AppCompatActivity  {
       //kelvin = celsius + 273.15;
       //fahrenheit = kelvin * 1.8 - 459.67;
 
-     /* double fahrenheit = ((celsius * 9) / 5) + 32;
-     e doubl celsius = ((fahrenheit - 32) * 5 / 9);
-      double kelvin =
-      double kelvin =*/
-    oneTemperatureScaleToTheOtherTwoTempScales();
+      oneTemperatureScaleToTheOtherTwoTempScales();
 
 
     });
@@ -42,17 +37,10 @@ public class MainActivity extends AppCompatActivity  {
 
   public void oneTemperatureScaleToTheOtherTwoTempScales() {
 
+
     //get kelvin input
-    String input1 = binding.input1.getText().toString().trim();
-    //get fahrenheit input
-    String input2 = binding.input2.getText().toString().trim();
-    //get celsius input
-    String input3 = binding.input3.getText().toString().trim();
-
-    double fahrenheit;
-    double celsius;
     double kelvin;
-
+    String input1 = binding.input1.getText().toString().trim();
     if (input1.isEmpty()) {
       binding.input1.setText("0");
       kelvin = 0;
@@ -60,6 +48,9 @@ public class MainActivity extends AppCompatActivity  {
       kelvin = Double.parseDouble(input1);
     }
 
+    //get fahrenheit input
+    double fahrenheit;
+    String input2 = binding.input2.getText().toString().trim();
     if (input1.isEmpty()) {
       binding.input2.setText("0");
       fahrenheit = 0;
@@ -67,6 +58,9 @@ public class MainActivity extends AppCompatActivity  {
       fahrenheit = Double.parseDouble(input2);
     }
 
+    //get celsius input
+    double celsius;
+    String input3 = binding.input3.getText().toString().trim();
     if (input1.isEmpty()) {
       binding.input3.setText("0");
       celsius = 0;
@@ -74,25 +68,25 @@ public class MainActivity extends AppCompatActivity  {
       celsius = Double.parseDouble(input3);
     }
 
-    //binding.input1.setText(getString(R.string.kelvin,sum));
-    if(kelvin == 0 && fahrenheit == 0) {
+
+    if (kelvin == 0 && fahrenheit == 0) {
       kelvin = celsius + 273.15;
-      fahrenheit =  celsius * 9 / 5 + 32;
+      fahrenheit = ((celsius * 9 / 5) + 32);
 
       binding.input1.setText(getString(R.string.kelvin, kelvin));
-      binding.input2.setText(getString(R.string.fahrenheit,fahrenheit));
+      binding.input2.setText(getString(R.string.fahrenheit, fahrenheit));
 
 
     } else if (fahrenheit == 0 && celsius == 0) {
-      fahrenheit = kelvin * 1.8 - 459.67;
+      fahrenheit = ((kelvin * 1.8) - 459.67);
       celsius = kelvin - 273.15;
 
       binding.input2.setText(getString(R.string.fahrenheit, fahrenheit));
       binding.input3.setText(getString(R.string.celsius, celsius));
 
     } else if (celsius == 0 && kelvin == 0) {
-      celsius = fahrenheit / 9 * 5 - 32;
-      kelvin = fahrenheit / 1.8 + 459.67;
+      celsius = (((fahrenheit / 9) * 5) - 32);
+      kelvin = ((fahrenheit / 1.8) + 459.67);
 
       binding.input1.setText(getString(R.string.kelvin, kelvin));
       binding.input3.setText(getString(R.string.celsius, celsius));
@@ -100,8 +94,7 @@ public class MainActivity extends AppCompatActivity  {
 
   }
 
-}
-/*
+
   @Override
   public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -117,5 +110,3 @@ public class MainActivity extends AppCompatActivity  {
     oneTemperatureScaleToTheOtherTwoTempScales();
   }
 }
-
- */
